@@ -1,0 +1,53 @@
+application: quotidianinfo
+version: 1
+runtime: python27
+api_version: 1
+threadsafe: false
+
+builtins:
+- appstats: on
+- remote_api: off
+- admin_redirect: on
+
+#admin_console:
+#  pages:
+#  - name: Blog Comment Admin
+#    url: /blog/admin/comments
+#  - name: Create a Blog Post
+#    url: /blog/admin/newentry
+
+libraries:
+
+handlers:
+
+- url: /cc/css
+  static_dir: chromecast/css
+
+- url: /cc/js
+  static_dir: chromecast/js
+  
+- url: /assets
+  static_dir: assets
+
+- url: /favicon.ico
+  static_files: assets/img/favicon.ico
+  upload: assets/img/favicon.ico
+
+- url: /robots.txt
+  static_files: assets/robots.txt
+  upload: assets/robots.txt
+  
+- url: /humans.txt
+  static_files: assets/humans.txt
+  upload: assets/humans.txt
+
+- url: /admin
+  script: main.py
+  login: admin
+  
+- url: /profile
+  script: main.py
+  login: required
+  
+- url: .*
+  script: main.py

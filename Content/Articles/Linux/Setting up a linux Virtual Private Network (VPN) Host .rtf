@@ -1,0 +1,227 @@
+{\rtf1\ansi\ansicpg1252\cocoartf949\cocoasubrtf540
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+\margl1440\margr1440\vieww9000\viewh8400\viewkind0
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\ql\qnatural\pardirnatural
+
+\f0\fs24 \cf0 Setting up a linux Virtual Private Network (VPN) Host \
+\
+A VPN can be thought of as a secured, virtual local network.  So if you want access to your computer somewhere else in the world, a VPN will make it look like that computer is on your local network.\
+\
+Step 1: Install OpenVPN\
+get server program from openvpn.net \
+or\
+In terminal type: sudo apt-get install vpn\
+\
+Step 2: Log into terminal as the root user\
+in terminal, type: sudo su, then enter your root password\
+\
+Step 3: Edit the openvpn file\
+//open the file openvpn for editing using pico\
+in terminal, type: pico /etc/default/openvpn\
+now make sure each line in this file is commented out, then add the line\
+AUTOSTART="openvpn"\
+press ctrl+x, then y, then enter to save the changes to the file\
+\
+Step 4: Create the openVPN Config File\
+//create a new configuration file.  this is the file that step 3 references for autostarting. \
+in terminal type: touch /etc/openvpn/openvpn.conf\
+\
+Step 5: setup rsa config file\
+//Go to the right directory\
+in terminal: cd /etc/openvpn\
+//copy the easy-rsa folder to the current location\
+in terminal: cp -r /usr/share/doc/openvpn/examples/easy-rsa/ .\
+pico easy-rsa/2.0/vars\
+comment out export EASY_RSA="`pwd`" using a # at the start of the line\
+add the line: export EASY_RSA=/etc/openvpn/easy-rsa/2.0\
+then fill out the following lines properly\
+export KEY_COUNTRY="CA"\
+export KEY_PROVINCE="SK"\
+export KEY_CITY="city name"\
+export KEY_ORG="organization name"\
+export KEY_EMAIL="me@site.com"\
+press ctrl+x, then y, then enter to save the changes to the file\
+\
+Step 6: get the system ready for new keys\
+//move to the right directory\
+in terminal: cd easy-rsa/2.0\
+//run vars (the entry is a period, then a space, then a period.  that is not a typo\
+in terminal: . ./vars\
+//clean up the keys\
+./clean-all\
+//install openssl\
+in terminal: sudo apt-get install openssl\
+\
+Step 7: Create the keys\
+//build the certificate authority.  fill out any values that are wrong like country, province, etc.\
+in terminal: ./build-ca\
+//create a server key.  enter any necessary info, and select y for any yes no questions\
+./build-key-server server\
+//create a client key. same process as with server key\
+./build-key client1\
+//create Diffie Hellman parameters\
+./build-dh\
+The certificates and keys should now be in /etc/openvpn/easy-rsa/2.0/keys\
+For the remote client to access this server, they must now have the files ca.crt, client2.crt, client1.key from the keys folder, and be placed in /etc/openvpn\
+\
+Step 8: Server openvpn config file setup\
+in terminal: pico /etc/openvpn/openvpn.conf\
+now paste the following into this file.\
+\
+dev tun\
+proto tcp\
+port 1194\
+\
+ca /etc/openvpn/easy-rsa/2.0/keys/ca.crt\
+cert /etc/openvpn/easy-rsa/2.0/keys/server.crt\
+key /etc/openvpn/easy-rsa/2.0/keys/server.key\
+dh /etc/openvpn/easy-rsa/2.0/keys/dh1024.pem\
+\
+user nobody\
+group nogroup\
+server 10.8.0.0 255.255.255.0\
+\
+persist-key\
+persist-tun\
+\
+#status openvpn-status.log\
+#verb 3\
+client-to-client\
+\
+push "redirect-gateway def1"\
+\
+#log-append /var/log/openvpn\
+#comp-lzo\
+\
+Step 9: setup ip forwarding\
+in terminal: echo 1 > /proc/sys/net/ipv4/ip_forward\
+in terminal: sudo iptables -t nat -A POSTROUTING -s 10.8.0.0/24 -o eth0 -j MASQUERADE\
+//Since the config file is updated, openvpn must be restarted\
+in terminal: /etc/init.d/openvpn restart\
+\
+Step 10:Setup Client\
+//copy \
+//Create a openvpn.conf file for the client that has the following contents (replace a.b.c.d with your server's external ip address, and forward port 1194 to the server if it is behind a router.\
+\
+##############################################\
+# This configuration can be used by multiple #\
+# clients, however each client should have   #\
+# its own cert and key files.                #\
+#                                            #\
+# On Windows, you might want to rename this  #\
+# file so it has a .ovpn extension           #\
+##############################################\
+\
+# Specify that we are a client and that we\
+# will be pulling certain config file directives\
+# from the server.\
+client\
+\
+# Use the same setting as you are using on\
+# the server.\
+# On most systems, the VPN will not function\
+# unless you partially or fully disable\
+# the firewall for the TUN/TAP interface.\
+;dev tap\
+dev tun\
+\
+# Windows needs the TAP-Win32 adapter name\
+# from the Network Connections panel\
+# if you have more than one.  On XP SP2,\
+# you may need to disable the firewall\
+# for the TAP adapter.\
+;dev-node MyTap\
+\
+# Are we connecting to a TCP or\
+# UDP server?  Use the same setting as\
+# on the server.\
+;proto tcp\
+proto tcp\
+\
+# The hostname/IP and port of the server.\
+# You can have multiple remote entries\
+# to load balance between the servers.\
+remote a.b.c.d 1194\
+\
+# Choose a random host from the remote\
+# list for load-balancing.  Otherwise\
+# try hosts in the order specified.\
+;remote-random\
+\
+# Keep trying indefinitely to resolve the\
+# host name of the OpenVPN server.  Very useful\
+# on machines which are not permanently connected\
+# to the internet such as laptops.\
+resolv-retry infinite\
+\
+# Most clients don't need to bind to\
+# a specific local port number.\
+nobind\
+\
+# Downgrade privileges after initialization (non-Windows only)\
+;user nobody\
+;group nobody\
+\
+# Try to preserve some state across restarts.\
+persist-key\
+persist-tun\
+\
+# If you are connecting through an\
+# HTTP proxy to reach the actual OpenVPN\
+# server, put the proxy server/IP and\
+# port number here.  See the man page\
+# if your proxy server requires\
+# authentication.\
+#;http-proxy-retry # retry on connection failures\
+#;http-proxy [proxy server] [proxy port #]\
+\
+# Wireless networks often produce a lot\
+# of duplicate packets.  Set this flag\
+# to silence duplicate packet warnings.\
+;mute-replay-warnings\
+\
+# SSL/TLS parms.\
+# See the server config file for more\
+# description.  It's best to use\
+# a separate .crt/.key file pair\
+# for each client.  A single ca\
+# file can be used for all clients.\
+ca /etc/openvpn/ca.crt\
+cert /etc/openvpn/client1.crt\
+dh /etc/openvpn/dh1024.pem\
+key /etc/openvpn/client1.key\
+\
+# Verify server certificate by checking\
+# that the certicate has the nsCertType\
+# field set to "server".  This is an\
+# important precaution to protect against\
+# a potential attack discussed here:\
+#  http://openvpn.net/howto.html#mitm\
+#\
+# To use this feature, you will need to generate\
+# your server certificates with the nsCertType\
+# field set to "server".  The build-key-server\
+# script in the easy-rsa folder will do this.\
+;ns-cert-type server\
+\
+# If a tls-auth key is used on the server\
+# then every client must also have the key.\
+#;tls-auth ta.key 1\
+\
+# Select a cryptographic cipher.\
+# If the cipher option is used on the server\
+# then you must also specify it here.\
+#;cipher x\
+\
+# Enable compression on the VPN link.\
+# Don't enable this unless it is also\
+# enabled in the server config file.\
+#comp-lzo\
+\
+# Set log file verbosity.\
+verb 3\
+\
+# Silence repeating messages\
+;mute 20\
+}

@@ -1,0 +1,31 @@
+CRITICAL UPDATES
+DONE - 0. Make sure uploaded titles use underscores instead of spaces, and switch underscores with white spaces when displaying the titles
+DONE - 1. Make it so that RSS feeds can be more easily aggregated
+DONE - 2. Make RSS links go to the data wrapped in Quotidian Info 'base' instead of just the data
+3. Make homepage a most recent activity overview and move bio to another page
+4. Fix images so the html dimensions match the actual image dimensions
+5. Clean up some of the interface uggly points like the software list icons
+6. Make better error message pages
+7. Nicer favicon
+8. Add ipad/iphone icon thing
+DONE - 9. Fix software display so that it doesn't have the software type required in the URL
+10. Prevent duplicate titles
+
+NON CRITICAL UPDATES
+Add the ability to have a random number of display images for software
+Incorporate a twitter feed
+Make the site more mobile friendly
+Add some JQuery/Javascript effects (make the image display work more nicely)
+Add CSS themes
+Add layout themes
+Add user accounts for site customization (themes, favorites page, admin contact, etc.)
+Make admin panel much nicer to work with
+
+NEW MODULE IDEAS
+Add links, music, tea, and electronics categories
+Create a personal finance subdomain (rerouted to subdir of www) application
+
+
+nibbler.silktide.com
+
+6a0e1772-c753-49b8-bd1a-4d865cf876f1 - test

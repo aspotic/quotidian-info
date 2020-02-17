@@ -1,0 +1,31 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1038\cocoasubrtf290
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+\margl1440\margr1440\vieww9000\viewh8400\viewkind0
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\ql\qnatural\pardirnatural
+
+\f0\fs24 \cf0 Install Ubuntu\
+	-Download the latest version\
+	-Burn to disk or put on a bootable usb drive\
+	-Boot to it and install\
+Install updates\
+Install open ssh server\
+	-sudo apt-get install openssh-server\
+\
+Install NXServer\
+	-http://64.34.161.181/download/3.4.0/Linux/nxclient_3.4.0-7_i386.deb\
+	-http://64.34.161.181/download/3.4.0/Linux/nxnode_3.4.0-13_i386.deb\
+	-http://64.34.161.181/download/3.4.0/Linux/FE/nxserver_3.4.0-12_i386.deb\
+	-Run:\
+		sudo dpkg -i nxclient_3.4.0-7_i386.deb\
+  		sudo dpkg -i nxnode_3.4.0-13_i386.deb\
+  		sudo dpkg -i nxserver_3.4.0-12_i386.deb\
+	-Setup sshd_config to handle the nxserver dsa key:\
+		sudo pico /etc/ssh/sshd_config\
+		set: RSAAuthentication yes\
+		set: PubkeyAuthentication yes\
+		add: AuthorizedKeysFile2 /usr/NX/home/nx/.ssh/authorized_keys2\
+	-Configure nxserver to allow proper number of sessions\
+		sudo pico /usr/NX/etc/server.cfg\
+	-Enable NX statistics\
+	-Create custom DSA key}

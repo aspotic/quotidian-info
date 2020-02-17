@@ -1,0 +1,59 @@
+Installing a basic webserver on ubuntu 10.04 (apache 2, php, mysql, phpmyadmin, ruby, perl, python)
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;This tutorial will get a webserver up and running on your linux system (this tutorial was written using Ubuntu 10.04). <br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The web server will give of course apache 2 for the basic webserver, then mysql for the database with phpmyadmin to control it, and php, ruby, perl, and python for scripting.<br />
+<br />
+Step 1: [verify host name]<br />
+check the file @ /etc/hosts for the server name<br />
+terminal command: sudo pico /etc/hosts<br />
+
+if the computer is serving the internet with a domain name the file should contain:<br />
+127.0.0.1 <servername> localhost.localdomain localhost<br />
+###.###.###.### <servername>.<domain>.<tld> <servername><br />
+<br />
+if the computer is serving a local network only, then the following is good:<br />
+127.0.0.1	localhost<br />
+127.0.0.1	<servername>	localhost.localdomain		localhost<br />
+<br />
+to save changes, press ^X to close pico, then if changes were made press 'y' followed by 'enter'<br />
+<br />
+<b>Step 2: [update system]</b><br />
+To make sure everything is up to date, and will work with the new installs, we will update the system<br />
+in terminal:<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sudo apt-get update<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sudo apt-get upgrade --show-upgraded<br />
+<br />
+<b>Step 3:[install apache 2]</b><br />
+in terminal:<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sudo apt-get install apache2 apache2-doc apache2-utils<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo "servername <servername>" >> /etc/apache2/apache2.conf<br />
+<br />
+<b>Step 4:[install scripting languages]</b><br />
+in terminal:<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//install ruby<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sudo apt-get install libapache2-mod-ruby<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//install perl<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sudo apt-get install libapache2-mod-per12<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//install python<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sudo apt-get install libapache2-mod-python<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//install mysql support for python<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sudo apt-get install python-mysqldb<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//install php5<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sudo apt-get install libapache2-mod-php5 php5 php-pear php5-xcache<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sudo apt-get install php5-suhosin<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//install mysql support for php<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sudo apt-get install php5-mysql<br />
+<br />
+<b>Step 5:[install sql database]</b><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//install mysql<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sudo apt-get install mysql-server<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//install phpmyadmin<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sudo apt-get install phpmyadmin<br />
+
+
+
+
+
+
+
+

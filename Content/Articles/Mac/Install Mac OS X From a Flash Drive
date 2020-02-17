@@ -1,0 +1,20 @@
+Step 1
+Get a flash drive (or external hard drive) large enough to hold the disk (an 8GB drive is adequate for OS 10.6 or older)
+Step 2
+Plug the flash drive into a mac, then open up disk utility (it is in application>Utilities>Disk Utility)
+Step 3
+Get your hands on either a disk image of OS X, or a disk with it on it
+Step 4
+Mount the image of OS X, or insert the disk that has it on it.  It should show up in the left column of disk utility
+Step 5
+Click on any drive in the left column, then select the "Restore" tab above the main window.  You should see a source and a destination
+Step 6
+Right click on the mounted OS X item in the left column, and select "set as source"
+Step 7
+Right click on the flash drive you are wanting to put the data on, and select "set as source"
+Step 8
+Click the "Restore" button in the main window to write the OS X install disk onto the flash drive.
+Step 9
+Now put the flash drive in the computer you want to install OS X onto, and turn the mac on then hold the option key to select a drive to boot from
+Step 10
+Select your flash drive as the boot device, and your computer should boot to the flash drive and up to the OS X install screen.
