@@ -1,0 +1,23 @@
+{% extends extendFile %}
+
+{% block bodyContent %}
+<nav class="subNav">
+	<a href = "/graphicArt/list/photography">Photography</a>
+	<a href = "/graphicArt/list/drawing">Drawings</a>
+	<a href = "/graphicArt/list/website">Websites</a>	
+	<a href = "/graphicArt/list/drafting">Drafting</a>	
+</nav>
+<ul id="tiles">
+	{% for item in tileData %}
+	<li class="tile">
+		<a href="javascript:showImage('{{item.url}}=s800')">
+			<img class="tileImg" src="{{item.url}}=s200" alt="{{item.title}} Thumb" width="200" height="200" />
+		</a>
+		<span class="tileTitle">
+			<a href="/file/{{item.key}}">{{item.title}}</a>
+		</span>
+	</li>
+	{% endfor %}
+</ul>
+
+{% endblock %}

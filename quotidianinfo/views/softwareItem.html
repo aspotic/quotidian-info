@@ -1,0 +1,44 @@
+{% extends extendFile %}
+
+{% block bodyContent %}
+
+<nav class="subNav">
+	<a href = "/software/list/android">Android</a>
+	<a href = "/software/list/ccpp">C/C++</a>
+	<a href = "/software/list/java">Java</a>	
+	<!--<a href = "/software/list/cSharp">C#</a>	-->
+	<a href = "/software/list/other">Other</a>	
+</nav>
+
+
+<h3 id="softwareTitle">{{tile.title}}</h3>
+
+<!--<span id="softwareLanguage">{{tile.language}}</span>-->
+
+<a href="/file/{{tile.file_key}}" id="softwareDownload">Download</a>
+
+<div id="softwareOpImages-Wrapper">
+	<ul id="softwareOpImages">
+		<li>
+			<a href="javascript:showImage('{{tile.image1_url}}=s800')">
+				<img src="{{tile.image1_url}}=s200" class="softwareOpImage" alt="screenshot 1" width="200" height="200" />
+			</a>
+		</li>
+		<li>
+			<a href="javascript:showImage('{{tile.image2_url}}=s800')">
+				<img src="{{tile.image2_url}}=s200" class="softwareOpImage" alt="screenshot 3" width="200" height="200" />
+			</a>
+		</li>
+		<li>
+			<a href="javascript:showImage('{{tile.image3_url}}=s800')">
+				<img src="{{tile.image3_url}}=s200" class="softwareOpImage" alt="screenshot 3" width="200" height="200" />
+			</a>
+		</li>
+	</ul>
+</div>
+
+<div id="softwareDescription">
+	{{tile.description|safe}}
+</div>
+<br />
+{% endblock %}

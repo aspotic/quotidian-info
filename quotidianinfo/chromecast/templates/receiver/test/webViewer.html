@@ -1,0 +1,60 @@
+<!-- webViewer -->
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="https://www.gstatic.com/cast/js/receiver/1.0/cast_receiver.js"></script>
+        <script type="text/javascript">
+            cast.receiver.logger.setLevelValue(0);
+            var channelHandler = new cast.receiver.ChannelHandler('namespace');
+
+            this.onChannelOpened = function(event) {
+                console.log('opened');
+            };
+            this.onChannelClosed = function(event) {
+                console.log('closed');
+            };
+
+            channelHandler.addEventListener(
+                cast.receiver.Channel.EventType.MESSAGE,
+                function(event) {
+                    console.log('message: ' + event.message);
+                    document.getElementById("display-frame").src = event.message;
+                }
+            );
+            channelHandler.addEventListener(cast.receiver.Channel.EventType.OPEN, this.onChannelOpened.bind(this));
+            channelHandler.addEventListener(cast.receiver.Channel.EventType.CLOSED, this.onChannelClosed.bind(this));
+
+
+            // Initialize and start the receiver
+            var receiver = new cast.receiver.Receiver(
+                '6a0e1772-c753-49b8-bd1a-4d865cf876f1', ["namespace"], "", 15
+            );
+            channelHandler.addChannelFactory(receiver.createChannelFactory('namespace'));
+
+            receiver.start();
+
+
+
+
+
+            window.addEventListener('load', function() {
+                //var chromecastApp = new cast.receiver.Receiver("webViewer", ["namespace"], "", 15);
+
+
+
+                function broadcast(message) {
+                    channelHandler.getChannels().forEach(
+                    function(channel) {
+                        channel.send(message);
+                    });
+                }
+
+                broadcast("YAY!!!!!");
+            });
+        </script>
+        <title>Web Viewer</title>
+    </head>
+    <body>
+        <iframe src="http://www.xkcd.com" width="100%" height="1000px" id="display-frame"></iframe>
+    </body>
+</html>

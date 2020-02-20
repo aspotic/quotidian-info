@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="description" content="{{metaData.description}}" />
+	<meta name="keywords" content="{{metaData.keywords}}" />
+	<meta name="author" content="Adam Knox">
+	<meta name="robots" content="index, follow">
+	<meta name="revisit-after" content="1 month">
+	<title>Quotidian.Info</title>
+	<!-- {{metaData.top3Keywords}} -->
+
+	
+	<link rel="alternate" type="application/rss+xml" title="RSS" href="http://www.quotidian.info/rss.xml" />
+	<link rel="icon" href="/favicon.ico" type="image/x-icon" />
+	<link rel="stylesheet" href="/assets/css/print.css" media="print"/>
+	<link rel="stylesheet" href="/assets/css/{{style}}-large.css" media="screen"/>
+	<!--<script type="text/javascript" src="/assets/jquery-ui/jquery-1.9.1.js"></script>-->
+	<script type="text/javascript" src="/assets/js/photoDisplay.js"></script>
+</head>	
+<body>
+	<ul class="watermarkChars" id="watermarkLeftChars">
+		<li>Q</li>
+		<li>U</li>
+		<li>O</li>
+		<li>T</li>
+		<li>I</li>
+		<li>D</li>
+		<li>I</li>
+		<li>A</li>
+		<li>N</li>
+	</ul>
+	
+	<ul class="watermarkChars" id="watermarkRightChars">
+		<li>I</li>
+		<li>N</li>
+		<li>F</li>
+		<li>O</li>
+	</ul>
+	<nav>
+		<a href="/">				Home		</a>
+		<a href="/graphicArt/list">	Graphic Art	</a>
+		<a href="/software/list">	Software	</a>
+		<!--
+		<a href="electronics">	Electronics	</a>
+		<a href="music">		Music		</a>
+		<a href="tea">			Tea			</a>
+		<a href="articles">		Articles	</a>
+		-->
+		<a href="/rss.xml"><img src="/assets/img/feed-icon-14x14.png" alt="RSS" width="14" height="14" /></a>
+	</nav>
+	<div id="scrollable">
+		<header>
+			<div id="circleGroup">
+				<div class="circle" id="circle0"> </div>
+				<div class="circle" id="circle1"> </div>
+				<div class="circle" id="circle2"> </div>
+				<div class="circle" id="circle3"> </div>
+				<div class="circle" id="circle4"> </div>
+				<div class="circle" id="circle5"> </div>
+				<div class="circle" id="circle6"> </div>
+				<div class="circle" id="circle7"> </div>
+				<div class="circle" id="circle8"> </div>
+				<div class="circle" id="circle9"> </div>
+			</div>
+			<div id="headerCover"> </div>
+			<h1 id="headerTitleLarge">Quotidian</h1>
+			<h1 id="headerTitleSmall">Info</h1>
+		</header>
+		<div id="data">
+			{% block bodyContent %}
+			{% endblock%}
+		</div>
+	</div>
+	
+	<script type="text/javascript">
+
+	  var _gaq = _gaq || [];
+	  _gaq.push(['_setAccount', 'UA-36870241-1']);
+	  _gaq.push(['_setDomainName', 'quotidian.info']);
+	  _gaq.push(['_trackPageview']);
+	
+	  (function() {
+	    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+	    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+	    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	  })();
+	
+	</script>
+	
+	<!-- Start of StatCounter Code for Default Guide -->
+	<script type="text/javascript">
+	var sc_project=8519661; 
+	var sc_invisible=1; 
+	var sc_security="7829b106"; 
+	var scJsHost = (("https:" == document.location.protocol) ?
+	"https://secure." : "http://www.");
+	document.write("<sc"+"ript type='text/javascript' src='" +
+	scJsHost+
+	"statcounter.com/counter/counter.js'></"+"script>");
+	</script>
+	<noscript><div class="statcounter"><a title="free hit
+	counter" href="http://statcounter.com/free-hit-counter/"
+	target="_blank"><img class="statcounter"
+	src="http://c.statcounter.com/8519661/0/7829b106/1/"
+	alt="free hit counter"></a></div></noscript>
+	<!-- End of StatCounter Code for Default Guide -->
+</body>
+</html>

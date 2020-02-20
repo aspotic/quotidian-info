@@ -1,0 +1,26 @@
+{% extends extendFile %}
+
+{% block bodyContent %}
+
+<nav class="subNav">
+	<a href = "/software/list/android">Android</a>
+	<a href = "/software/list/ccpp">C/C++</a>
+	<a href = "/software/list/java">Java</a>	
+	<!--<a href = "/software/list/cSharp">C#</a>	-->
+	<a href = "/software/list/other">Other</a>	
+</nav>
+
+<ul id="tiles">
+	{% for item in tileData %}
+	<li class="tile">
+		<a href="{{item.item_url}}">
+			<img class="tileImg" src="{{item.display_url}}" alt="{{ item.title }} Display Picture"  width="200" height="200" />
+		</a>
+		<span class="tileTitle">
+			{{item.title}}
+		</span>
+	</li>
+	{% endfor %}
+</ul>
+
+{% endblock %}

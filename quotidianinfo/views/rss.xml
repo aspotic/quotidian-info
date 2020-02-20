@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<rss version="2.0">
+	<channel>
+		<title>Quotidian Info</title>
+		<link>http://www.quotidian.info</link>
+		<description>The latest content posted on Quotidian Info</description>
+		<copyright>2013 Adam Knox All rights reserved.</copyright>
+		<language>en-us</language>
+
+		{% for item in items %}
+		<item>
+			<title><![CDATA[{{item.title}}]]></title>
+			<link><![CDATA[{{item.link}}]]></link>
+			<description>{{item.description}}</description>
+			<pubDate><![CDATA[{{item.pubDate}}]]></pubDate>
+		</item>	
+		{% endfor %}
+	</channel>
+</rss>

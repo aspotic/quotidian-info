@@ -1,0 +1,496 @@
+/*===============================
+*	General Tags:
+================================*/
+*{
+	margin:0;
+	padding:0;
+}
+
+p.alert {
+	color: #FDDD00;
+}
+
+html{
+	background-color:#0c0c0c;
+	
+	background: linear-gradient(to top right, #341842, transparent),
+				linear-gradient(to top left, #0e233c, transparent),
+				url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAOklEQVQYlWNgwARSUIwToCvAqgGfCVLYOL5IYr7oCtFN80XTAFdDtEKircZmKl45ooIHnwYGBgYGBgDbewTZcnZqwgAAAABJRU5ErkJggg==) repeat,
+				linear-gradient(to top, #341842, #fddd00);
+	font-family: Nyala;
+	min-height: 100%;
+	
+}
+
+body{
+	color:#fcfcfc;
+	height:100%;
+}
+
+p {
+	text-indent:3em;
+	margin:1em auto;
+	padding:0 1em;
+}
+
+a {
+	font-style: bold;
+	text-decoration: none;
+	color: #fddd00;
+}
+
+a:hover {
+	color: #d0a4e7;
+}
+
+img#selfshot {
+	width:188px;
+	height:250px;
+	border:4px solid #0e233c;
+}
+
+figure#biofig {
+	width:194px;
+	height:256px;
+	margin: 2em;
+	float: right;
+}
+/*===============================
+*	Nav Bar:
+================================*/
+nav {
+	position:relative;
+	bottom: 0;
+	left: 0;
+	width:100%;
+	min-height:2em;
+	margin:0 auto;
+	text-align:center;
+	
+	background-color:#310f42;
+	background: linear-gradient(to top, #260736, #411f53);
+	border-bottom: 0.3em #411f53 solid;
+}
+
+nav a {
+	position: relative;
+	margin:0.35em auto;
+	font-size: 1.3em;
+	display: inline-block;
+	width: 10%;
+	min-width:5.5em;
+	
+	color:#fddd00;
+	text-decoration: none;
+	
+	transition: 
+		color 0.6s ease-in,
+		text-shadow 1s ease-out;
+		
+	-webkit-transition: 
+		color 0.6s ease-in,
+		text-shadow 1s ease-out;	/* safari */
+}
+
+nav a:hover {
+	color:#310f43;
+	text-shadow: 0px 0px 8px #fddd00,
+				 0px 0px 3px #ffffff;
+}
+
+
+
+/*===============================
+*	Header:
+================================*/
+
+header {
+	position: relative;
+	margin:0 auto;
+	max-width: 60em;
+	height: 10em;
+	background: linear-gradient(to bottom, #0e233c, #263f5e);
+	border-bottom:0.5em #0e233c solid;
+}
+
+header h1 {
+	position: relative;
+	width: 100%;
+	text-align: center;
+}
+
+header h1#headerTitleLarge {
+	top: 0.3em;
+	font-size:4.5em;
+	color: #163c6d;
+	text-shadow: 0px 0px 1px #83b0e7,
+				 0px 0px 3px #83b0e7,
+				 0px 0px 5px #83b0e7;
+}
+
+header h1#headerTitleSmall {
+	top: 0.6em;
+	font-size:2.5em;
+	color: #341842;
+	text-shadow: 0px 0px 1px #d0a4e7,
+				 0px 0px 3px #d0a4e7,
+				 0px 0px 5px #d0a4e7;
+}
+
+div#headerCover {
+	position: absolute;
+	width: 100%;
+	height: 10em;
+	background: linear-gradient(to bottom, #0e233c, #263f5e);
+	border-bottom:0.5em #0e233c solid;
+	opacity: 0.4;
+	filter:alpha(opacity=0.4); 
+}
+
+
+
+/*===============================
+*	Body:
+================================*/
+div#data {
+	position: relative;
+	width: 100%;
+	min-height: 100%;
+	background-color: #283a52;
+	background: linear-gradient(to top, #2e5075 1em, #24364e, #263850 10em);
+}
+
+
+nav.subNav {	
+	background-color:#0e233c;
+	background: linear-gradient(to top, #0e233c, #233c59);
+	border-bottom: 0.3em #233c59 solid;
+}
+
+
+nav.subNav a:hover {
+	color:#310f43;
+	text-shadow: 0px 0px 8px #fddd00,
+				 0px 0px 3px #ffffff;
+}
+
+
+img#wrappedImg {
+	position:relative;
+	display: block;
+	max-width:800px;
+	max-height:800px;
+	margin-top: 2em;
+	margin-bottom: 2em;
+	margin-left: auto;
+	margin-right: auto;
+	border:#e0e0e0 solid 0.2em;
+}
+
+div#wrappedImgWrapper {
+	width: 100%;
+}
+
+
+/*===============================
+*	Decoration Elements:
+================================*/
+
+div#scrollable {
+	position: relative;
+	max-width: 60em;
+	min-height: 100%;
+	margin:0 auto;
+	margin-bottom:3em;
+	border-left:0.3em #bba313 solid;
+	border-right:0.3em #bba313 solid;
+	border-bottom:0.2em #bba313 solid;
+	background-color: #283a52;
+	background: linear-gradient(to top, #2e5075 1em, #24364e, #263850 10em);
+	z-index:1;
+}
+
+
+ul#watermarkLeftChars	{left: 0.5em;}
+ul#watermarkRightChars	{right: 0.5em;}
+
+ul.watermarkChars {
+	top: 0.5em;
+	position: fixed;
+	font-size: 4.8em;
+	color: #ffffff;
+	opacity: 0.05;
+	filter:alpha(opacity=0.05); /* For IE8 and earlier */
+	text-align: center;
+	width:1em;
+	height: 10em;
+}
+
+ul#watermarkLeftChars li 	{height:11%;}
+ul#watermarkRightChars li 	{height:29.5%;}
+
+ul.watermarkChars li {
+	display: inline-block;
+	margin:auto auto;
+}
+
+div#circleGroup {
+	position:absolute;
+	overflow:hidden;
+	width: 100%;
+	height: 100%;
+}
+
+div.circle {
+	position:absolute;
+	background-color: #1a3557;
+	border:0.1em #263f5e solid;
+	z-index: 0;
+}
+
+div#circle0 {left:3%; top:3em; width:6em; height:6em; border-radius:6em;}
+div#circle1 {left:16%; top:5em; width:4em; height:4em; border-radius:4em;}
+div#circle2 {left:21%; top:5em; width:2em; height:2em; border-radius:2em;}
+div#circle3 {left:28%; top:1em; width:6em; height:6em; border-radius:6em;}
+div#circle4 {left:40%; top:1em; width:4em; height:4em; border-radius:4em;}
+div#circle5 {left:50%; top:6em; width:3em; height:3em; border-radius:3em;}
+div#circle6 {left:60%; top:3em; width:6em; height:6em; border-radius:6em;}
+div#circle7 {left:70%; top:-3em; width:8em; height:8em; border-radius:8em;}
+div#circle8 {left:80%; top:3em; width:5em; height:5em; border-radius:5em;}
+div#circle9 {left:90%; top:-0.5em; width:10em; height:10em; border-radius:10em;}
+
+
+
+/*===============================
+*	Item Tiles
+================================*/
+
+ul#tiles {
+	overflow:auto;
+}
+
+li.tile {
+	position: relative;
+	float:left;
+	width: 10.4em;
+	height: 10em;
+	margin: 0.8em;
+	display:block;
+	background-color:#1a3557;
+}
+li img.tileImg {
+	position: absolute;
+	width: auto;
+	height: auto;
+	max-width: 10em;
+	max-height: 8em;
+	left:0;
+	right:0;
+	margin:auto;
+	border:0.1em #fddd00 solid;
+	background-color:#0e233c;
+}
+li img.tileImg:hover {
+	border:0.1em #d0a4e7 solid;
+}
+
+li span.tileTitle {
+	position:absolute;
+	bottom:0.2em;
+	width:10.4em;
+	height: 1.2em;
+	background-color:#0e233c;
+	text-align: center;
+}
+
+li span.tileTitle a {
+	text-decoration: none;
+	color: #fddd00;
+}
+
+li span.tileTitle a:hover {
+	color: #d0a4e7;
+}
+
+
+
+
+/*===============================
+*	Software Item Elements:
+================================*/
+
+h3#softwareTitle {
+	width: 100%;
+	font-size:2em;
+	margin-top:0.5em;
+	text-align: center;
+}
+
+span#softwareLanguage {
+	position: relative;
+	width: 100%;
+	margin-top: 0.5em;
+	margin-bottom: 2em;
+	display:inline-block;
+	text-align: center;
+}
+
+a#softwareDownload {
+	position: relative;
+	margin:0.5em auto;
+	width: 100%;
+	text-align: center;
+	display: inline-block;
+	
+	font-size: 1.5em;
+	font-style: bold;
+	text-decoration: none;
+	color: #fddd00;
+}
+
+a#softwareDownload:hover {
+	color: #d0a4e7;
+}
+
+div#softwareOpImages-Wrapper {
+	position: relative;
+	width: 90%;
+	margin: 2em auto;
+	overflow-x: auto;
+	overflow-y: none;
+	border: #bba313 solid 0.1em;
+	background-color: #203249;
+}
+
+ul#softwareOpImages {
+	position: relative;
+	width: 652px;
+}
+
+ul#softwareOpImages li {
+	position: relative;
+	display: inline-block;
+	width: 200px;
+	height: 200px;
+	margin: 5px;
+	border: #0e233c solid 2px;
+	background-color:#2e435c;
+}
+
+ul#softwareOpImages img.softwareOpImage {
+	position: absolute;
+	margin: auto;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	width: auto;
+	height: auto;
+	max-height: 200px;
+	max-width: 200px;
+}
+
+div#softwareDescription {
+	position: relative;
+	width: 90%;
+	margin: auto;
+	overflow: auto;
+	border: #bba313 solid 0.1em;
+	background-color: #203249;
+}
+
+
+/*===============================
+*	Image Window Elements:
+================================*/
+
+div#imageWindow {
+	position:fixed;
+	top:0;
+	left:0;
+	width:100%;
+	height:100%;
+	background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBoAAAAhQCBuMOYEwAAAABJRU5ErkJggg==) repeat;
+}
+
+div#imageWindowShaded {
+	position:absolute;
+	top:0;
+	bottom:0;
+	left:0;
+	right:0;
+	margin:auto;	
+	border:#000000 solid 0.2em;
+	max-width:830px;
+	max-height:830px;
+
+	background: #545454;
+	background: -moz-linear-gradient(left,  #191919 0%, #444444 50%, #191919 100%);
+	background: -webkit-gradient(linear, left top, right top, color-stop(0%,#545454), color-stop(50%,#444444), color-stop(100%,#191919));
+	background: -webkit-linear-gradient(left,  #191919 0%,#444444 50%,#191919 100%);
+	background: -o-linear-gradient(left,  #191919 0%,#444444 50%,#191919 100%);
+	background: -ms-linear-gradient(left,  #191919 0%,#444444 50%,#191919 100%);
+	background: linear-gradient(to right,  #191919 0%,#444444 50%,#191919 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#191919', endColorstr='#191919',GradientType=1 );
+}
+			
+div#imageWindowShaded a {
+	color: #ffffff;
+	text-shadow: 0px 0px 4px #000000;
+	
+}
+
+div#imageWindowShaded a:hover {
+	color:#000000;
+	text-shadow: 0px 0px 8px #fddd00,
+				 0px 0px 3px #ffffff;
+}
+
+span#imageWindowCloseText {
+	top:0;
+	bottom:0;
+	left:0;
+	right:0;
+	position:absolute;
+	font-style: bold;
+	font-size:1em;
+	margin:0.5em;
+}
+
+div#imageWindowClose {
+	position:absolute;
+	top:-1.1em;
+	right:-1.1em;
+	width:2em;
+	height:2em;
+	text-align: center;
+	border:#460604 solid 0.2em;
+	border-radius:2em;
+	background-color: #831411;background: #b7161e;
+	background: -moz-radial-gradient(center, ellipse cover,  #b7161e 0%, #b21719 57%, #f18e99 100%);
+	background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,#b7161e), color-stop(57%,#b21719), color-stop(100%,#f18e99));
+	background: -webkit-radial-gradient(center, ellipse cover,  #b7161e 0%,#b21719 57%,#f18e99 100%);
+	background: -o-radial-gradient(center, ellipse cover,  #b7161e 0%,#b21719 57%,#f18e99 100%);
+	background: -ms-radial-gradient(center, ellipse cover,  #b7161e 0%,#b21719 57%,#f18e99 100%);
+	background: radial-gradient(ellipse at center,  #b7161e 0%,#b21719 57%,#f18e99 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b7161e', endColorstr='#f18e99',GradientType=1 );
+}
+
+
+div#imageWindowClose:hover {
+	border:#000000 solid 0.2em;
+}
+
+img#imageWindowImage {
+	position:absolute;
+	top:0;
+	bottom:0;
+	left:0;
+	right:0;
+	width: auto;
+	height: auto;
+	max-width:800px;
+	max-height:800px;
+	margin:auto;
+	border:#e0e0e0 solid 0.2em;
+}
